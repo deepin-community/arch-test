@@ -1,5 +1,181 @@
-template-repository (1.0-1) unstable; urgency=medium
+arch-test (0.21-1) unstable; urgency=medium
 
-  * Initial release
+  * New upstream release.
+  * No riscv32 because no binutils in Debian.
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Adam Borowski <kilobyte@angband.pl>  Fri, 07 Jul 2023 07:34:05 +0200
+
+arch-test (0.20-1) unstable; urgency=medium
+
+  * New upstream release (+arc, [not enabled] loong64).
+  * No loong64 because we don't have a binutils package yet.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Mon, 09 Jan 2023 22:33:12 +0100
+
+arch-test (0.19-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Re-enable win64, fixed.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Sat, 10 Sep 2022 23:20:17 +0200
+
+arch-test (0.18-1) unstable; urgency=medium
+
+  * New upstream release.
+    + Fixes a dmesg warning about executable stack.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Thu, 24 Mar 2022 21:06:22 +0100
+
+arch-test (0.17-2) unstable; urgency=medium
+
+  * Temporarily disable win64 (binutils issue); closes: #998593.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Tue, 16 Nov 2021 13:05:14 +0100
+
+arch-test (0.17-1) unstable; urgency=medium
+
+  * New upstream release.
+    + man page doesn't claim qemu requires copying stuff to chroot.
+      Closes: #939910.
+  * Bump watch file version to 4 (no changes).
+
+ -- Adam Borowski <kilobyte@angband.pl>  Thu, 21 Jan 2021 01:31:00 +0100
+
+arch-test (0.16-2) unstable; urgency=medium
+
+  * Build mips{,64}{,el} tests on mips64el ("mips" is no more).
+  * Drop an unused lintian override.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Thu, 22 Aug 2019 23:22:14 +0200
+
+arch-test (0.16-1) unstable; urgency=medium
+
+  * New upstream release.
+    + Fix false negatives on s390x due to uninitialized register upper half
+      (Alexander Efremkin).
+  * Add a test that no-args invocation doesn't spew errors on failed archs.
+  * dh 12.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Sat, 27 Jul 2019 02:25:41 +0200
+
+arch-test (0.15-2) unstable; urgency=medium
+
+  * Don't check for SWP on armel; it's not needed in the vast majority of
+    cases anymore.  Yes, you'll get crashes if it's actually used.
+    Closes: #922728.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Wed, 27 Feb 2019 13:41:50 +0100
+
+arch-test (0.15-1) unstable; urgency=medium
+
+  * New upstream release.
+    + elf-arch knows about hppa64 (closes: #912369) and strips OS/libc
+      prefixes it can't properly detect, such as hurd- or musl-linux-
+      (closes: #911156, #912368).
+
+ -- Adam Borowski <kilobyte@angband.pl>  Wed, 31 Oct 2018 00:53:04 +0100
+
+arch-test (0.14-1) unstable; urgency=medium
+
+  * New upstream release.
+    + elf-arch: recognition of mips{,64}r6{,el}.  Closes: #910981.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Sun, 14 Oct 2018 15:58:47 +0200
+
+arch-test (0.13-1) unstable; urgency=medium
+
+  * New upstream release.
+    + Adds "elf-arch".  Closes: #905959.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Thu, 11 Oct 2018 20:20:08 +0200
+
+arch-test (0.12-2) unstable; urgency=medium
+
+  * Fix --version when built without git available.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Sat, 05 May 2018 01:15:24 +0200
+
+arch-test (0.12-1) unstable; urgency=medium
+
+  * New upstream release.
+    + add --version (Closes: #897615)
+  * A simple autopkgtest: check whether dpkg's architecture is executable.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Fri, 04 May 2018 23:38:10 +0200
+
+arch-test (0.11-1) unstable; urgency=medium
+
+  * New upstream release (-c <chroot>).
+  * Build-Conflict against a problematic version of binutils-mingw.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Mon, 02 Apr 2018 20:25:21 +0200
+
+arch-test (0.10-1) unstable; urgency=medium
+
+  * New upstream release (+riscv64).
+  * Actually add R³.
+  * watch: ignore debian tags.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Sun, 25 Feb 2018 02:43:03 +0100
+
+arch-test (0.9-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Build-Depend only on Windows binutils and headers.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Wed, 10 Jan 2018 00:55:03 +0100
+
+arch-test (0.8-1) unstable; urgency=medium
+
+  * New upstream release (+ia64).
+  * dh 11.
+  * R³.
+  * Override lintian warning for non-hardened Windows binary.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Tue, 09 Jan 2018 14:27:24 +0100
+
+arch-test (0.7-1) unstable; urgency=medium
+
+  * New upstream release (+hppa).
+    + check whether SWP works on armel
+  * Multi-Arch: foreign.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Tue, 06 Dec 2016 05:08:22 +0100
+
+arch-test (0.6-1) unstable; urgency=medium
+
+  * New upstream release (+mipsn32, mipsn32el, arm64ilp32).
+    + new option "-n" to look for native support only
+
+ -- Adam Borowski <kilobyte@angband.pl>  Tue, 18 Oct 2016 04:12:27 +0200
+
+arch-test (0.5-1) unstable; urgency=medium
+
+  * New upstream release (+powerpcspe).
+    + don't detect SPE as powerpc
+
+ -- Adam Borowski <kilobyte@angband.pl>  Tue, 14 Jun 2016 03:32:08 +0200
+
+arch-test (0.4-1) unstable; urgency=medium
+
+  * New upstream release (+alpha).
+    + require 686 on any-i386
+  * NMU instructions in debian/control.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Mon, 16 May 2016 05:02:06 +0200
+
+arch-test (0.3-1) unstable; urgency=medium
+
+  * New upstream release (+kfreebsd-i386, kfreebsd-amd64).
+  * Use multilib where available to avoid broken binutils-x86-64-linux-gnu
+    on i386.
+  * Allow dropping archs by removing them from build-depends.
+  * Add a watch file.
+
+ -- Adam Borowski <kilobyte@angband.pl>  Sun, 17 Apr 2016 19:33:47 +0200
+
+arch-test (0.2-1) unstable; urgency=medium
+
+  * Initial release (Closes: #819207)
+
+ -- Adam Borowski <kilobyte@angband.pl>  Mon, 11 Apr 2016 21:08:00 +0200
