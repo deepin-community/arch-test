@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Verbose script for debug purposes.
+ulimit -c 0
+
+for x in arch-test-*
+  do
+    arch=${x##arch-test-}
+    printf '\e[33m%s\e[0m\n' "$arch"
+    MSG=`"./$x" 2>/dev/null|tr -d '\r'`
+    RET=$?
+    if [ $RET -eq 0 -a "x$MSG" = "xok" ]
+      then COL="32" # green
+      else COL="31" # red
+    fi
+    printf '\e[%smret=\e[1m%d\e[0;%sm stdout=\e[1m%s\e[0m\n' "$COL" "$RET" "$COL" "$MSG"
+  done
