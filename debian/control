@@ -1,15 +1,60 @@
-Source: template-repository
-Section: unknown
+Source: arch-test
+Section: admin
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Adam Borowski <kilobyte@angband.pl>
+Build-Depends: debhelper-compat (=13),
+ binutils-x86-64-linux-gnu [!amd64 !i386 !x32],
+ binutils-aarch64-linux-gnu [!arm64],
+ binutils-arm-linux-gnueabihf [!armhf !armel !arm],
+ binutils-m68k-linux-gnu [!m68k],
+ binutils-powerpc-linux-gnu [!powerpc !ppc64],
+ binutils-powerpc64le-linux-gnu [!ppc64el],
+ binutils-s390x-linux-gnu [!s390x],
+ binutils-sh4-linux-gnu [!sh4],
+ binutils-sparc64-linux-gnu [!sparc64 !sparc],
+ binutils-hppa-linux-gnu [!hppa],
+ binutils-ia64-linux-gnu [!ia64 !arm64],
+ binutils-riscv64-linux-gnu [!riscv64],
+#binutils-loong64-linux-gnu [!loong64],
+ binutils-arc-linux-gnu [!arc],
+ binutils-mingw-w64-i686, mingw-w64-i686-dev,
+ binutils-mingw-w64-x86-64, mingw-w64-x86-64-dev,
+# doko, others: if you want to drop an architecture from binutils, feel
+# free to shout at me or NMU arch-test to remove it yourself.  It is
+# enough to remove from Build-Depends, configure will do the right thing.
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+Vcs-Git: https://github.com/kilobyte/arch-test.git -b debian
+Vcs-Browser: https://github.com/kilobyte/arch-test/tree/debian
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: arch-test
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: detect architectures supported by your machine/kernel
+ This package lets you enumerate architectures that your kernel can run.
+ The check is for the ability to run machine code and supporting appropriate
+ syscall ABI -- you may need to install userland libraries in a chroot,
+ container or via multiarch to actually execute non-static binaries of such
+ architectures.
+ .
+ Also provided is "elf-arch", a tool to determine the architecture of an ELF
+ binary (program or library).
+ .
+ Architectures detected by this version of arch-test are:
+  * amd64, i386, x32
+  * mips, mipsel, mips64, mips64el
+  * arm, armel, armhf, arm64, arm64ilp32
+  * powerpc, ppc64, ppc64el, powerpcspe
+  * m68k
+  * sh4
+  * s390x
+  * sparc, sparc64
+  * illumos-amd64
+  * win32, win64
+  * kfreebsd-amd64, kfreebsd-i386
+  * alpha
+  * hppa
+  * ia64
+  * riscv64
+  * arc
