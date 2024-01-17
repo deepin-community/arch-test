@@ -1,3 +1,9 @@
+arch-test (0.21-1deepin2) unstable; urgency=medium
+
+  * add loong64 soupport.
+
+ -- LiChengGang <lichenggang@uniontech.com>  Wed, 17 Jan 2024 09:19:49 +0800
+
 arch-test (0.21-1deepin1) unstable; urgency=medium
 
   * Remove mips and alpha dependencies from control
